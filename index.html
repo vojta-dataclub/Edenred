@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Struktura Týmu - Edenred, Data Club & Contexto</title>
+  <!-- Načtení Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            edenred: {
+              DEFAULT: '#E3000F',
+              dark: '#b3000c',
+              light: '#fce7e8',
+            },
+            dataclub: {
+              navy: '#13005a', 
+              cyan: '#00d1ff',
+              magenta: '#ff00e5',
+              orange: '#ff8a00'
+            },
+            contexto: {
+              DEFAULT: '#24a19c', 
+              dark: '#1b7d79',
+              light: '#e9f6f5'
+            }
+          },
+          boxShadow: {
+            'edenred': '0 4px 14px 0 rgba(227, 0, 15, 0.15)',
+            'dataclub': '0 4px 14px 0 rgba(19, 0, 90, 0.15)',
+            'contexto': '0 4px 14px 0 rgba(36, 161, 156, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Import písma Montserrat */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+    
+    body { 
+      font-family: 'Montserrat', sans-serif; 
+    }
+
+    /* Gradient pro Data Club karty */
+    .border-gradient-dc {
+      border: 2px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(to right, #ff8a00, #00d1ff, #ff00e5) border-box;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4 md:p-8">
+
+  <!-- Hlavní kontejner -->
+  <div id="app" class="w-full max-w-[1400px] bg-white rounded-3xl shadow-2xl relative overflow-hidden flex flex-col min-h-[800px] border border-gray-100">
+    
+    <!-- Obsah slidu -->
+    <div class="flex-1 flex flex-col p-8 md:p-12">
+      
+      <div class="h-4"></div>
+
+      <!-- Organizační diagram -->
+      <div id="org-chart" class="flex-1 flex flex-col items-center">
+        <!-- Renderováno pomocí JS -->
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-12 py-6 bg-gray-50 border-t border-gray-100 flex justify-between items-center text-sm text-gray-400">
+      <span class="font-medium">Interní dokumentace © 2024</span>
+      <div class="flex gap-4 italic font-semibold">
+        <span class="text-contexto/80">Contexto Leadgen team</span>
+        <span>•</span>
+        <span class="text-dataclub-navy/60">Data Club Kompetence</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const orgData = {
+      head: {
+        role: "Business strategist",
+        name: "Vojta Bulíř",
+        imageUrl: "https://media.licdn.com/dms/image/v2/D4E03AQEzZpvbJ7tjkg/profile-displayphoto-shrink_200_200/B4EZd4H814HIAY-/0/1750067040012?e=1777507200&v=beta&t=PPzoPfYDLRCywpKg-rbpnNQdc_cJd8yKymVkw1kBhm0",
+        linkedin: "https://www.linkedin.com/in/vojtabulir/",
+        branding: "dataclub"
+      },
+      strategy: [
+        {
+          role: "Strategic planner Leadgen",
+          name: "Tomáš Vacek",
+          imageUrl: "https://media.licdn.com/dms/image/v2/C4E03AQFhu5dCFMS59g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1621351777679?e=1777507200&v=beta&t=lLz7470NxZAbSgwA3zUlU6tGlVTA5xJLtPQuueU78XE",
+          linkedin: "https://www.linkedin.com/in/tomáš-vacek-aa22aa4a/",
+          branding: "contexto"
+        },
+        {
+          role: "Komunikační strategie",
+          name: "Mikuláš Všelicha",
+          imageUrl: "https://media.licdn.com/dms/image/v2/D4E03AQGAwF5A6-9D_Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1727767230511?e=1777507200&v=beta&t=G-9zkwISaMv57qOUU8NABY1jMWhofdVFu1y_VsB_Mc4",
+          linkedin: "https://www.linkedin.com/in/mikuláš-všelicha-053b57176/",
+          branding: "dataclub"
+        }
+      ],
+      executionLeft: [
+        { role: "Account Director", name: "Kristina Matiášová", linkedin: "https://www.linkedin.com/in/xtina/", branding: "contexto" },
+        { role: "Idea Maker", name: "Tomáš", linkedin: "#", branding: "contexto" },
+        { role: "PPC Media Senior mgr.", name: "Markéta Pastuchová", linkedin: "https://www.linkedin.com/in/markéta-pastuchová-4a964948/", branding: "contexto" },
+        { role: "Senior Social Media Mgr.", name: "Magdaléna Vacková", linkedin: "https://www.linkedin.com/in/magdalena-šašková/", branding: "contexto" }
+      ],
+      executionRight: [
+        { role: "SOC specialist", name: "Aneta Jevčič", linkedin: "https://www.linkedin.com/in/aneta-jevčič-3a985818b/", branding: "dataclub" },
+        { role: "Graphic designer", name: "Lucie Velebová", linkedin: "https://www.linkedin.com/in/lucie-velebová-19679b120/", branding: "dataclub" },
+        { role: "Copywriter", name: "Tereza Holšánová", linkedin: "https://www.linkedin.com/in/terezah", branding: "dataclub" }
+      ]
+    };
+
+    function createPersonCard(person, isFeatured = false) {
+      const branding = person.branding;
+      
+      // Výběr obrázku - buď nahraná fotka nebo generovaný avatar
+      let avatarUrl = person.imageUrl;
+      if (!avatarUrl) {
+        let bg = 'fce7e8';
+        let color = 'E3000F';
+        
+        if (branding === 'dataclub') {
+          bg = '13005a';
+          color = 'ffffff';
+        } else if (branding === 'contexto') {
+          bg = '24a19c';
+          color = 'ffffff';
+        } else if (isFeatured) {
+          bg = 'E3000F';
+          color = 'ffffff';
+        }
+        avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(person.name)}&background=${bg}&color=${color}&bold=true&size=128`;
+      }
+      
+      const hasLinkedin = person.linkedin && person.linkedin !== "#";
+      
+      // Definice barev pro zvýrazněnou ikonu LinkedInu
+      let liIconColors = "";
+      if (branding === 'dataclub') {
+        liIconColors = "text-dataclub-navy bg-dataclub-cyan/10 hover:bg-dataclub-cyan/25";
+      } else if (branding === 'contexto') {
+        liIconColors = "text-contexto-dark bg-contexto/10 hover:bg-contexto/25";
+      } else {
+        liIconColors = "text-edenred bg-edenred/10 hover:bg-edenred/25";
+      }
+      
+      // Definice tříd pro kartu
+      let cardClasses = isFeatured ? "w-72 p-4 " : "w-60 p-3 ";
+      cardClasses += "bg-white rounded-2xl transition-all duration-300 group relative z-10 flex items-center gap-4 ";
+      
+      if (branding === 'dataclub') {
+        cardClasses += isFeatured ? "border-gradient-dc shadow-dataclub" : "border border-dataclub-navy/20 shadow-sm hover:border-dataclub-cyan/50";
+      } else if (branding === 'contexto') {
+        cardClasses += isFeatured ? "border-2 border-contexto shadow-contexto" : "border border-contexto/30 shadow-sm hover:border-contexto";
+      } else {
+        cardClasses += isFeatured ? "border-2 border-edenred/10 shadow-lg" : "border border-gray-100 shadow-sm hover:border-edenred/40";
+      }
+
+      // Třídy pro text role
+      let roleClasses = "text-[10px] font-black uppercase tracking-widest leading-none mb-1 truncate ";
+      if (branding === 'dataclub') roleClasses += "text-dataclub-navy";
+      else if (branding === 'contexto') roleClasses += "text-contexto-dark";
+      else roleClasses += "text-edenred";
+
+      return `
+        <div class="${cardClasses}">
+          <div class="flex-shrink-0 relative">
+            <img src="${avatarUrl}" alt="${person.name}" class="w-12 h-12 rounded-full object-cover border-2 border-transparent group-hover:scale-105 transition-all shadow-sm" />
+          </div>
+          <div class="flex flex-col min-w-0 flex-1">
+            <span class="${roleClasses}">
+              ${person.role}
+            </span>
+            <span class="font-bold text-gray-800 text-sm md:text-base truncate">
+              ${person.name}
+            </span>
+          </div>
+          <div class="flex-shrink-0 flex items-center justify-center">
+            ${hasLinkedin ? `
+              <a href="${person.linkedin}" target="_blank" class="flex items-center justify-center w-8 h-8 rounded-full transition-all ${liIconColors}" title="LinkedIn profil">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect width="4" height="12" x="2" y="9"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            ` : `
+              <div class="text-gray-100 p-1">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+            `}
+          </div>
+        </div>
+      `;
+    }
+
+    const container = document.getElementById('org-chart');
+
+    container.innerHTML = `
+      <!-- Úroveň 1: Head (Data Club) -->
+      <div class="flex flex-col items-center w-full mb-2">
+        ${createPersonCard(orgData.head, true)}
+        <div class="w-px h-8 bg-gradient-to-b from-dataclub-navy to-gray-300 mt-2"></div>
+      </div>
+
+      <!-- Úroveň 2: Strategie -->
+      <div class="relative w-full max-w-[1100px] mb-0">
+        <!-- Spojovací linka horizontální horní -->
+        <div class="absolute top-0 left-[25%] right-[25%] h-px bg-gray-300"></div>
+        
+        <div class="flex justify-between w-full">
+          <!-- Tomáš (Contexto) -->
+          <div class="flex flex-col items-center w-1/2">
+            <div class="w-px h-6 bg-gray-300"></div>
+            ${createPersonCard(orgData.strategy[0], true)}
+            <div class="w-px h-10 bg-contexto mt-2"></div>
+          </div>
+          <!-- Mikuláš (Data Club) -->
+          <div class="flex flex-col items-center w-1/2">
+            <div class="w-px h-6 bg-gray-300"></div>
+            ${createPersonCard(orgData.strategy[1], true)}
+            <div class="w-px h-10 bg-dataclub-navy mt-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Úroveň 3: Exekuce -->
+      <div class="w-full flex gap-8 px-4 mt-0">
+        
+        <!-- LEVÁ ČÁST (Contexto) -->
+        <div class="flex-1 bg-contexto/5 rounded-[2.5rem] p-8 border border-dashed border-contexto/40 relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-6 py-1.5 rounded-full border border-contexto shadow-sm whitespace-nowrap z-20">
+            <span class="text-[10px] font-black text-contexto uppercase tracking-[0.2em]">Contexto Leadgen team</span>
+          </div>
+          <div class="grid grid-cols-2 gap-6 justify-items-center">
+            ${orgData.executionLeft.map(person => createPersonCard(person, false)).join('')}
+          </div>
+        </div>
+
+        <!-- PRAVÁ ČÁST (Data Club) -->
+        <div class="flex-1 bg-slate-50/50 rounded-[2.5rem] p-8 border border-dashed border-dataclub-navy/20 relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-6 py-1.5 rounded-full border border-dataclub-navy/20 shadow-sm whitespace-nowrap z-20">
+            <span class="text-[10px] font-black text-dataclub-navy uppercase tracking-[0.2em]">Data Club Production</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 justify-items-center">
+             <div class="col-span-2 flex flex-wrap justify-center gap-4">
+                ${orgData.executionRight.map(person => createPersonCard(person, false)).join('')}
+             </div>
+          </div>
+        </div>
+
+      </div>
+    `;
+  </script>
+</body>
+</html>

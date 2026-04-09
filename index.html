@@ -125,10 +125,10 @@
           </h1>
         </div>
 
-        <!-- Logo Edenred -->
-        <div class="relative z-30 group cursor-pointer hover:scale-105 transition-transform flex items-center justify-center p-2">
-           <img src="https://www.edenred.cz/static/images/edenred_logo.svg" alt="Edenred Logo" class="h-12 w-auto pointer-events-none">
-        </div>
+        <!-- Logo Edenred s přímým odkazem (bez hover efektů) -->
+        <a href="https://www.edenred.cz/" target="_blank" class="relative z-30 cursor-pointer flex flex-col items-center justify-center p-2">
+           <img src="https://www.edenred.cz/static/images/edenred_logo.svg" alt="Edenred Logo" class="h-12 w-auto">
+        </a>
       </div>
 
       <!-- Organizační diagram -->
@@ -177,17 +177,24 @@
           imageUrl: "https://media.licdn.com/dms/image/v2/C4E03AQFhu5dCFMS59g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1621351777679?e=1777507200&v=beta&t=lLz7470NxZAbSgwA3zUlU6tGlVTA5xJLtPQuueU78XE",
           linkedin: "https://www.linkedin.com/in/tomáš-vacek-aa22aa4a/",
           branding: "contexto",
-          expertise: lorem
+          expertise: "Tomáš Vacek je zkušený manažer a stratég s více než 25 lety praxe v oblasti obchodu, marketingu, online marketingu, salesu a business developmentu. Významnou část své kariéry spojil s agenturním prostředím, kde působil ve vedení Ogilvy Action i Ogilvy & Mather jako Managing Director a věnoval se řízení agentury, rozvoji byznysu, strategii i vedení klíčových klientů. Vedle toho má silné zkušenosti i z byznysového a korporátního prostředí, mimo jiné jako General Manager ve skupině Perfect Group nebo jako Vice-Chairman of the Board a CEO ve společnosti Pietro Filipi Holding. V CONTEXTU dnes působí jako zakládající partner se zaměřením na sales, marketing, online marketing a strategii, kde pomáhá firmám hledat nové cesty k růstu a rozvoji. Jeho profesní dráha propojuje vrcholový management, strategické řízení, obchodní rozvoj i hlubokou znalost marketingového prostředí."
         }
       ],
       executionDataClub: [
         { role: "Social Media Specialist", name: "Aneta Jevčič", linkedin: "https://www.linkedin.com/in/aneta-jevčič-3a985818b/", branding: "dataclub", expertise: lorem },
         { role: "Graphic designer", name: "Lucie Velebová", linkedin: "https://www.linkedin.com/in/lucie-velebová-19679b120/", branding: "dataclub", expertise: lorem },
-        { role: "Copywriter", name: "Tereza Holšánová", linkedin: "https://www.linkedin.com/in/terezah", branding: "dataclub", expertise: lorem }
+        { role: "Copywriter", name: "Tereza Holšánová", linkedin: "https://www.linkedin.com/in/terezah", branding: "dataclub", expertise: lorem },
+        { role: "AI Product Developer", name: "Martin *", linkedin: "#", branding: "dataclub", expertise: lorem }
       ],
       executionContexto: [
-        { role: "Account Director", name: "Kristina Matiášová", linkedin: "https://www.linkedin.com/in/xtina/", branding: "contexto", expertise: lorem },
-        { role: "Idea Maker", name: "Tomáš", linkedin: "#", branding: "contexto", expertise: lorem },
+        { role: "Account Director", name: "Kristina Matiášová", linkedin: "https://www.linkedin.com/in/xtina/", branding: "contexto", expertise: "Má více než 20 let zkušeností v marketingu, reklamě a brand managementu, které získala v agenturním i klientském prostředí. Působila v TBWA a Ogilvy, kde se postupně vypracovala až na pozici Account Directora a získala silné zkušenosti s vedením klientů, kampaní i značek. Na straně klienta pak jako Brand Manager ALBERT v Aholdu zodpovídala za brandovou strategii, marketingový kalendář, práci s rozpočtem i implementaci brand guidelines. Dnes v CONTEXTU působí jako seniorní konzultant a zakládající partner, kde využívá své dlouholeté zkušenosti z marketingu a reklamy při vedení klientských vztahů, rozvoji značek a strategickém poradenství. Její profesní dráha propojuje strategické myšlení, praxi z předních reklamních agentur a hlubokou znalost budování značek." },
+        { 
+          role: "Idea Maker", 
+          name: "Tomáš Belko", 
+          linkedin: "https://www.linkedin.com/in/tomas-belko-2274ba32/", 
+          branding: "contexto", 
+          expertise: "Tomáš Belko má za sebou dlouholetou kariéru v reklamě a kreativě, kterou budoval od pozice copywritera v BBK Advertising přes Creative Directora v Ogilvy až po roli Executive Creative Directora v Ogilvy & Mather Prague. Vedle toho dnes působí také jako Idea maker na freelance bázi, takže jeho profesní dráha stojí na silném strategickém i tvůrčím základu. Zároveň je velmi úspěšný i na umělecké scéně – je českým textařem, libretistou, scenáristou a saxofonistou, dlouhodobě spojeným se skupinou Sto zvířat. Je autorem textů pro řadu známých interpretů a podílel se také na filmových, divadelních a multimediálních projektech, jako jsou Vivaldianno nebo iMucha. Jeho profil tak výjimečně propojuje špičkovou reklamní kreativitu s výrazným přesahem do hudby, divadla a autorské tvorby."
+        },
         { role: "PPC Media Senior mgr.", name: "Markéta Pastuchová", linkedin: "https://www.linkedin.com/in/markéta-pastuchová-4a964948/", branding: "contexto", expertise: lorem },
         { role: "Senior Social Media Mgr.", name: "Magdaléna Vacková", linkedin: "https://www.linkedin.com/in/magdalena-šašková/", branding: "contexto", expertise: lorem }
       ]
@@ -245,7 +252,6 @@
       let avatarSize = isFeatured ? "w-14 h-14" : "w-12 h-12";
 
       // HTML pro poznámku a šipku pod kartou Magdalény
-      // Upraven hrot šipky pro lepší návaznost na čáru
       const annotationHTML = isMagdalena ? `
         <div class="absolute left-1/2 -translate-x-1/2 -bottom-24 z-50 pointer-events-none hidden lg:block">
            <svg class="w-20 h-16 text-edenred overflow-visible mx-auto" viewBox="0 0 100 100">
@@ -334,22 +340,32 @@
       <div class="w-full flex flex-col lg:flex-row gap-8 px-4 mt-2">
         
         <!-- Data Club team -->
-        <div class="flex-1 bg-white/40 rounded-[2.5rem] p-8 border-2 border-dashed border-dataclub-navy/20 relative shadow-sm flex flex-col">
+        <div class="flex-1 bg-white/40 rounded-[2.5rem] p-8 pb-6 border-2 border-dashed border-dataclub-navy/20 relative shadow-sm flex flex-col">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-8 py-2 rounded-full border border-dataclub-navy/20 shadow-sm whitespace-nowrap z-20">
             <span class="text-[10px] font-bold text-dataclub-navy uppercase tracking-[0.2em]">Data Club Creative & Content team</span>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center mb-8">
             ${orgData.executionDataClub.map(person => createPersonCard(person, false)).join('')}
+          </div>
+          <div class="mt-auto flex justify-center items-center w-full pt-4 border-t border-dataclub-navy/10">
+            <a href="https://www.dataclub.cz/" target="_blank" class="hover:scale-105 transition-transform">
+              <img src="https://vojta-dataclub.github.io/Edenred/images/dtc-logo-barva.png" alt="Data Club Logo" class="h-6 lg:h-8 object-contain">
+            </a>
           </div>
         </div>
 
         <!-- Contexto team -->
-        <div class="flex-1 bg-white/40 rounded-[2.5rem] p-8 border-2 border-dashed border-contexto/30 relative shadow-sm flex flex-col">
+        <div class="flex-1 bg-white/40 rounded-[2.5rem] p-8 pb-6 border-2 border-dashed border-contexto/30 relative shadow-sm flex flex-col">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-8 py-2 rounded-full border border-contexto shadow-sm whitespace-nowrap z-20">
             <span class="text-[10px] font-bold text-contexto uppercase tracking-[0.2em]">Contexto Leadgen team</span>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center mb-8">
             ${orgData.executionContexto.map(person => createPersonCard(person, false)).join('')}
+          </div>
+          <div class="mt-auto flex justify-center items-center w-full pt-4 border-t border-contexto/20">
+            <a href="https://www.contexto.cz/" target="_blank" class="hover:scale-105 transition-transform">
+              <img src="https://vojta-dataclub.github.io/Edenred/images/Contexto.jpeg" alt="Contexto Logo" class="h-6 lg:h-8 object-contain mix-blend-multiply rounded-sm">
+            </a>
           </div>
         </div>
 
